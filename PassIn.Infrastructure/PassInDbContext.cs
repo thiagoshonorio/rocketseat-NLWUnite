@@ -7,6 +7,7 @@ namespace PassIn.Infrastructure
     {
         //Representa a tabela eventos
         public DbSet<Event> Events { get; set; }
+        public DbSet<Attendee> Attendees { get; set; }
 
         //configurar o contexto com a base de dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
