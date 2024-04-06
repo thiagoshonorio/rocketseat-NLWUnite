@@ -13,7 +13,7 @@ namespace PassIn.Application.UseCases.Events.GetById
 
             if (entity is null)
             {
-                throw new PassInException("This event does not exist.");
+                throw new NotFoundException("This event does not exist.");
             }
 
             return new ResponseEventJson
