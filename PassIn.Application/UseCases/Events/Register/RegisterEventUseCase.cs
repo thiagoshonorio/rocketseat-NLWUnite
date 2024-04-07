@@ -7,11 +7,16 @@ namespace PassIn.Application.UseCases.Events.Register
 {
     public class RegisterEventUseCase
     {
+        private readonly PassInDbContext _dbContext;
+
+        public RegisterEventUseCase()
+        {
+            _dbContext = new PassInDbContext();
+        }
+
         public ResponseRegisterJson Execute(RequestEventJson request)
         {
             Validate(request);
-
-            var dbContext = new PassInDbContext();
 
             var entity = new Infrastructure.Entitites.Event
             {
@@ -21,8 +26,8 @@ namespace PassIn.Application.UseCases.Events.Register
                 Slug = request.Title.ToLower().Replace(" ","-"),                
             };
 
-            dbContext.Events.Add(entity);//prepara a query para o insert
-            dbContext.SaveChanges();//executa query
+            _dbContext.Events.Add(entity);//prepara a query para o insert
+            _dbContext.SaveChanges();//executa query
             return new ResponseRegisterJson
             {
                 Id = entity.Id
